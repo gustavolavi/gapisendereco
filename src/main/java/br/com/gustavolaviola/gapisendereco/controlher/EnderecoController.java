@@ -26,7 +26,7 @@ public class EnderecoController extends GapisRestController<Endereco,Long>{
 		this.enderecoRepository = enderecoRepository;
 	}
 	
-	@RequestMapping(value = "/busca/cep/{cep}", method = RequestMethod.GET)
+	@RequestMapping(value = "/cep/{cep}", method = RequestMethod.GET)
 	public Endereco googleEndereco(@PathVariable("cep") String cep) {
 		String viaCepUrl = new StringBuilder("http://viacep.com.br/ws/").append(cep).append("/json/").toString();
 		ViaCep viaCep = new RestTemplate().getForObject(URI.create(viaCepUrl), ViaCep.class);
