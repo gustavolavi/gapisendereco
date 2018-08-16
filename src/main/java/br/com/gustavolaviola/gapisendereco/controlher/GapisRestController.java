@@ -21,12 +21,12 @@ public class GapisRestController<T,ID> {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<Iterable<?>> getEndereco() {
+	public ResponseEntity<Iterable<?>> get() {
 		return new ResponseEntity<Iterable<?>>(grudRepository.findAll(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getEndereco(@PathVariable("id") ID id) {
+	public ResponseEntity<?> get(@PathVariable("id") ID id) {
 		return new ResponseEntity<T>(grudRepository.findById(id).get(),HttpStatus.OK);
 	}
 
