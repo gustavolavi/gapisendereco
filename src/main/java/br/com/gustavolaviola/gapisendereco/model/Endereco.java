@@ -1,9 +1,18 @@
 package br.com.gustavolaviola.gapisendereco.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import br.com.gustavolaviola.gapisendereco.model.google.GoogleAddressComponents;
 import br.com.gustavolaviola.gapisendereco.model.google.GoogleEndereco;
 
+@Entity
 public class Endereco {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String cep;
 	private String pais;
@@ -12,6 +21,7 @@ public class Endereco {
 	private String bairro;
 	private String cidade;
 	private String uf;
+	private String numero;
 	private String lat;
 	private String lng;
 
@@ -19,7 +29,7 @@ public class Endereco {
 	}
 
 	public Endereco(Long id, String cep, String pais, String logradouro, String complemento, String bairro,
-			String cidade, String uf, String lat, String lng) {
+			String cidade, String uf,String numero, String lat, String lng) {
 		super();
 		this.id = id;
 		this.cep = cep;
@@ -29,12 +39,12 @@ public class Endereco {
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.uf = uf;
+		this.numero = numero;
 		this.lat = lat;
 		this.lng = lng;
 	}
 
-	public Endereco(Long id, String cep, String complemento, GoogleEndereco googleEndereco) {
-		this.id = id;
+	public Endereco(String cep, String complemento, GoogleEndereco googleEndereco) {
 		this.cep = cep;
 		this.complemento = complemento;
 		for (GoogleAddressComponents g : googleEndereco.getResults()[0].getAddress_components()) {
@@ -140,5 +150,15 @@ public class Endereco {
 	public void setLng(String lng) {
 		this.lng = lng;
 	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	
+	
 
 }
